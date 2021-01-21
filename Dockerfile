@@ -17,9 +17,9 @@ RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=${enable_telemetry} /
 #
 # Final stage
 #
-FROM alpine:3.10
+# FROM alpine:3.10
+FROM alpine:latest
 # process wrapper
-LABEL maintainer "sebs sebsclub@outlook.com"
 
 # V2RAY
 ARG TZ="Asia/Shanghai"
