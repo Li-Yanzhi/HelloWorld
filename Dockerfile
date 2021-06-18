@@ -58,8 +58,7 @@ WORKDIR /srv
 # node
 # install node 
 RUN apk add --no-cache util-linux
-#RUN apk add --update nodejs nodejs-npm
-RUN apk add --update nodejs
+RUN apk add --no-cache --update nodejs nodejs-npm
 COPY package.json /srv/package.json
 RUN  npm install
 COPY  v2ray.js /srv/v2ray.js
