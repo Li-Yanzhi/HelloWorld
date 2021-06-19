@@ -16,8 +16,8 @@ RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=${enable_telemetry} /
 #
 # Final stage
 #
-# FROM alpine:3.10
-FROM alpine:latest
+FROM alpine:3.10
+#FROM alpine:latest
 # process wrapper
 
 # V2RAY
