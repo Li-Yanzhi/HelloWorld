@@ -1,6 +1,4 @@
-#
 # Builder
-#
 FROM abiosoft/caddy:builder as builder
 
 # add this line before you run `/bin/sh /usr/bin/builder.sh`
@@ -97,6 +95,7 @@ COPY index.html /srv/index.html
 # install process wrapper
 COPY --from=builder /go/bin/parent /bin/parent
 ADD caddy.sh /caddy.sh
-EXPOSE 443 80 2015
+#EXPOSE 443 80 2015
+EXPOSE 443 80
 ENTRYPOINT ["/caddy.sh"]
 # CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=$ACME_AGREE"]
