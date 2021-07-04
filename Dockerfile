@@ -56,12 +56,11 @@ WORKDIR /srv
 # node
 # install node 
 RUN apk add --no-cache util-linux
-RUN apk add --no-cache --update nodejs nodejs-npm
+RUN apk add --no-cache --update nodejs npm
 COPY package.json /srv/package.json
 RUN  npm install
 COPY  v2ray.js /srv/v2ray.js
 
-#ARG version="1.0.3"
 ARG version="2.3.0"
 LABEL caddy_version="$version"
 
@@ -91,6 +90,7 @@ VOLUME /root/.caddy /srv
 
 COPY Caddyfile /etc/Caddyfile
 COPY index.html /srv/index.html
+COPY dist/earth.min.js /srv/dist/earth.min.js
 # COPY package.json /etc/package.json
 # install process wrapper
 COPY --from=builder /go/bin/parent /bin/parent
