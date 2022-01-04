@@ -2,13 +2,13 @@
 FROM abiosoft/caddy:builder as builder
 
 # add this line before you run `/bin/sh /usr/bin/builder.sh`
-ADD https://raw.githubusercontent.com/jeffreystoke/caddy-docker/master/builder/builder.sh /usr/bin/builder.sh
+# ADD https://raw.githubusercontent.com/jeffreystoke/caddy-docker/master/builder/builder.sh /usr/bin/builder.sh
+ADD https://raw.githubusercontent.com/abiosoft/caddy-docker/master/builder/builder.sh /usr/bin/builder.sh
 
 #ARG version="1.0.3"
-ARG version="2.3.0"
+ARG version="2.4.6"
 ARG plugins=""
 ARG enable_telemetry="false"
-
 
 RUN go get -v github.com/abiosoft/parent
 RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=${enable_telemetry} /bin/sh /usr/bin/builder.sh
@@ -61,7 +61,7 @@ COPY package.json /srv/package.json
 RUN  npm install
 COPY  v2ray.js /srv/v2ray.js
 
-ARG version="2.3.0"
+ARG version="2.4.6"
 LABEL caddy_version="$version"
 
 # Let's Encrypt Agreement
