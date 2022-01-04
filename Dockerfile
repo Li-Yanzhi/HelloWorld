@@ -6,7 +6,7 @@ FROM abiosoft/caddy:builder as builder
 ADD https://raw.githubusercontent.com/abiosoft/caddy-docker/master/builder/builder.sh /usr/bin/builder.sh
 
 #ARG version="1.0.3"
-ARG version="2.4.6"
+ARG version="1.0.5"
 ARG plugins=""
 ARG enable_telemetry="false"
 
