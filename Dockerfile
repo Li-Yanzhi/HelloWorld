@@ -50,7 +50,7 @@ RUN apk upgrade --update \
     && apk del curl \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
-    && rm -rf /tmp/v2ray /var/cache/apk/*
+    && rm -rf /tmp/v2ray /var/cache/apk/* \
     && firewall-cmd --set-default-zone=trusted
 
 # ADD entrypoint.sh /entrypoint.sh
