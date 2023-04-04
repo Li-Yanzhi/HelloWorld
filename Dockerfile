@@ -34,7 +34,6 @@ RUN apk upgrade --update \
         bash \
         tzdata \
         curl \
-        firewalld \
     && mkdir -p \ 
         ${V2RAY_LOG_DIR} \
         ${V2RAY_CONFIG_DIR} \
@@ -51,7 +50,10 @@ RUN apk upgrade --update \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /tmp/v2ray /var/cache/apk/* \
-    && firewall-cmd --set-default-zone=trusted
+    && iptables -P INPUT ACCEPT \
+    && iptables -P FORWARD ACCEPT \
+    && iptables -P OUTPUT ACCEPT
+
 
 # ADD entrypoint.sh /entrypoint.sh
 WORKDIR /srv
