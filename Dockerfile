@@ -24,7 +24,7 @@ FROM alpine:latest
 ARG TZ="Asia/Shanghai"
 
 ENV TZ ${TZ}
-ENV V2RAY_VERSION v4.44.0
+ENV V2RAY_VERSION v4.45.2
 ENV V2RAY_LOG_DIR /var/log/v2ray
 ENV V2RAY_CONFIG_DIR /etc/v2ray/
 ENV V2RAY_DOWNLOAD_URL https://github.com/v2fly/v2ray-core/releases/download/${V2RAY_VERSION}/v2ray-linux-64.zip
@@ -34,6 +34,7 @@ RUN apk upgrade --update \
         bash \
         tzdata \
         curl \
+        firewalld \
     && mkdir -p \ 
         ${V2RAY_LOG_DIR} \
         ${V2RAY_CONFIG_DIR} \
@@ -50,6 +51,7 @@ RUN apk upgrade --update \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && rm -rf /tmp/v2ray /var/cache/apk/*
+    && firewall-cmd --set-default-zone=trusted
 
 # ADD entrypoint.sh /entrypoint.sh
 WORKDIR /srv
